@@ -1,147 +1,34 @@
+// var userChoices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,];
+var input = document.createElement("INPUT");
+input.setAttribute("type", "number");
+var userGuess = document.getElementById("input");
 
-//Available choices
-var letterChoices = ['a', 'b', 'c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+var computerChoices = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"];
 
-//score
-var wins = 0;
-var losses = 0;
-var guesses = 9;
-var guessesLeft = 9;    //Available choices
-var letterChoices = ['a', 'b', 'c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+var correct = 0;
+var wrong = 0;
 
-//score
-var wins = 0;
-var losses = 0;
-var guesses = 9;
-var guessesLeft = 9;
-var guessedLetters = [];
-var letterToGuess = null;
-
-//computer randomly chooses a letter
-
-var computerGuess = letterChoices [Math.floor(Math.random()*letterChoices.length)];
-
-//guesses left function
-
-var updateGuessesLeft = function() {
-    document.querySelector('#guessLeft').innerHTML = "Guesses Left: " + guessesLeft;
-};
-
-//letter to guess function
-
-var updateletterToGuess = function(){
-    this.letterToGuess = this.letterChoices[Math.floor(Math.random() * this.letterChoices.length)];
-};
-
-var updateGuessesSoFar = function(){
-    document.querySelector('#let').innerHTML = "Your guesses so far: " + guessedLetters.join(', ');
-};
-
-//reset
-
-var reset = function(){
-    totalGuesses = 9;
-    guessesLeft = 9;
-    guessedLetters = [];
-
-    updateletterToGuess();
-    updateGuessesSoFar();
-    updateGuessesLeft();
-
-};
-
-updateGuessesLeft();
-updateletterToGuess();
-
-//user input key
+var directionsText = document.getElementById("directions-text");
+var userChoiceText = document.getElementById("userchoice-text");
+var computerGuess =document.getElementById("computerGuess-text");
+var correctText = document.getElementById("correct-text");
+var wrongText = document.getElementById("wrong-text");
 
 document.onkeyup = function(event) {
-    guessesLeft--;
-    var userGuess;
-    console.log(userGuess)
+    var userChoice = event.key;
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-    guessedLetters.push(userGuess);
-    updateGuessesLeft();
-    updateGuessesSoFar();
-
-        if (guessesLeft > 0){
-            if (userGuess === letterToGuess){
-                wins++;
-                document.querySelector('#wins').innerHTML = 'Wins: ' + wins;
-                alert("How did you know!?!");
-                reset();
-            }
-        } else if (guessesLeft == 0){
-            losses++;
-            document.querySelector('#losses').innerHTML = 'Losses: ' + losses;
-            alert("Sorry, you're not a psychic!");
-
-            reset();
-        }
 }
-var guessedLetters = [];
-var letterToGuess = null;
 
-//computer randomly chooses a letter
-
-var computerGuess = letterChoices [Math.floor(Math.random()*letterChoices.length)];
-
-//guesses left function
-
-var updateGuessesLeft = function() {
-    document.querySelector('#guessLeft').innerHTML = "Guesses Left: " + guessesLeft;
-};
-
-//letter to guess function
-
-var updateletterToGuess = function(){
-    this.letterToGuess = this.letterChoices[Math.floor(Math.random() * this.letterChoices.length)];
-};
-
-var updateGuessesSoFar = function(){
-    document.querySelector('#let').innerHTML = "Your guesses so far: " + guessedLetters.join(', ');
-};
-
-//reset
-
-var reset = function(){
-    totalGuesses = 9;
-    guessesLeft = 9;
-    guessedLetters = [];
-
-    updateletterToGuess();
-    updateGuessesSoFar();
-    updateGuessesLeft();
-
-};
-
-updateGuessesLeft();
-updateletterToGuess();
-
-//user input key
-
-document.onkeyup = function(event) {
-    guessesLeft--;
-    var userGuess=on.key;
-    console.log(userGuess)
-
-    guessedLetters.push(userGuess);
-    updateGuessesLeft();
-    updateGuessesSoFar();
-
-        if (guessesLeft > 0){
-            if (userGuess === letterToGuess){
-                wins++;
-                document.querySelector('#wins').innerHTML = 'Wins: ' + wins;
-                alert("How did you know!?!");
-                reset();
-            }
-        } else if (guessesLeft == 0){
-            losses++;
-            document.querySelector('#losses').innerHTML = 'Losses: ' + losses;
-            alert("Sorry, you're not a psychic!");
-
-            reset();
-        }
+if (userGuess === computerGuess) {
+    correct++;
+} else if (userGuess == computerGuess) {
+    wrong++;
 }
-    
+
+
+
+userChoiceText.textContent = "You guessed: " + userGuess;
+computerChoiceText.textContent = "The Computer chose: " + computerGuess;
+correctText.textContent = "You Win!!! You have won: " + correct;
+wrongText.textContent = "You failed to guess the number. You have lost: " + wrong;
