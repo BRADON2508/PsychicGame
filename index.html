@@ -7,17 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/javascript/game.js"></script>
+    
 </head>
 <body>
   <h1>Can you guess the number?</h1>
 
   <form>
       User Guess:<br>
-      <input type="text" name="userGuess"><br>
+      <input type="text" name="userGuess" id="input"> <br>
       <button>Submit Guess</button>
     </form>
+
+    <h3 id="userGuess-text">
+        You guessed: 
+    </h3>
+
+    <h3 id="computerGuess-text">
+        Computer guessed:
+    </h3>
+
+    <h3 id="correct-text">
+        correct: 0
+    </h3>
+
+    <h3 id="wrong-text">
+        wrong: 0
+    </h3>
               
-    
+    <script src="assets/javascript/game.js"></script>
 </body>
 </html>
